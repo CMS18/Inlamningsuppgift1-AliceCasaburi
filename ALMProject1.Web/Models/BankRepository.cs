@@ -26,5 +26,27 @@ namespace ALMProject1.Web.Models
                 new Customer(){ Name = "Sharon", CustomerId = 3, AccountId = 3 }
             };
         }
+
+        public void Deposit(decimal amount, int accountId)
+        {
+            if (amount < 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            var account = Accounts.SingleOrDefault(x => x.AccountId == accountId);
+            account.Balance += amount;
+
+
+        }
+
+        public void Withdraw(decimal amount, int accountId)
+        {
+            var account = Accounts.SingleOrDefault(x => x.AccountId == accountId);
+            if (amount > account.Balance || amount < 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            account.Balance -= amount;
+        }
     }
 }
