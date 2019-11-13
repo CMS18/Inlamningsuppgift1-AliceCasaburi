@@ -12,7 +12,9 @@ namespace ALMProject1.Web.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            var model = new BankRepository();
+
+            return View(model);
         }
 
         public IActionResult About()
