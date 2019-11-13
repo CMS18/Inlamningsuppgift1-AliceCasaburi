@@ -6,12 +6,15 @@
 
 <h1>Alicina's bank</h1>
 
+<a asp-controller="Bank" asp-action="Index">Transactions</a>
+
 <div>
     <ul>
         @foreach (var item in Model.Customers)
         {
             <li>
-                @item.Name, CustomerID: @item.CustomerId, Account: @item.AccountId
+                @item.Name, CustomerID: @item.CustomerId, Account: @item.AccountId, Balance:
+                @Model.Accounts.SingleOrDefault(x => x.AccountId == item.AccountId).Balance $
             </li>
         }
     </ul>
