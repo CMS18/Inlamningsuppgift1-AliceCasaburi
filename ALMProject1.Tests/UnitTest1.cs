@@ -47,5 +47,24 @@ namespace ALMProject1.Tests
             var bank = new BankRepository();
             bank.Withdraw(100000, 1);
         }
+
+        [TestMethod]
+        public void TestTransfer()
+        {
+            var bank = new BankRepository();
+
+
+            var accountFrom = bank.Accounts.SingleOrDefault(x => x.AccountId == 1);
+            var accountTo = bank.Accounts.SingleOrDefault(x => x.AccountId == 2);
+            var balanceBeforeFrom = accountFrom.Balance;
+            var balanceBeforeTo = accountTo.Balance;
+
+            bank.Transfer(accountFrom.AccountId, accountTo.AccountId, 100);
+
+            Assert.AreEqual((balanceBeforeFrom - 100), accountFrom.Balance);
+            Assert.AreEqual((balanceBeforeTo + 100), accountTo.Balance);
+        }
+
+
     }
 }

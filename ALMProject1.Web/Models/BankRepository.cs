@@ -48,5 +48,21 @@ namespace ALMProject1.Web.Models
             }
             account.Balance -= amount;
         }
+
+        public void Transfer(int accountIdFrom, int accountIdTo, decimal amount)
+        {
+            var accountFrom = Accounts.SingleOrDefault(x => x.AccountId == accountIdFrom);
+            var accountTo = Accounts.SingleOrDefault(x => x.AccountId == accountIdTo);
+
+            if (amount > accountFrom.Balance || amount < 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            else
+            {
+                accountFrom.Balance -= amount;
+                accountTo.Balance += amount;
+            }                        
+        }
     }
 }
