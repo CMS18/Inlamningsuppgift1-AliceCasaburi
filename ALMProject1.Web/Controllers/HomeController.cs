@@ -19,7 +19,7 @@ namespace ALMProject1.Web.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Your application description page - Development version.";
 
             return View();
         }
